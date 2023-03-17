@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    align-items: stretch;
+}
+
+.nav-header {
+    margin-bottom: 10px;
+}
+
+.linklist {
+    text-decoration: underline;
+    font-family: Helvetica, sans-serif;
+}
+
+.navbar {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: -200px;
+    width: 200px;
+    background-color: #EEE;
+    text-align: center;
+    transition : transform 0.3s ease-in-out;
+    align-items: stretch;
+
+}
+
+.navbar.active{
+    transform: translateX(200px);
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+aside {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    padding-left: 20px;
+    background-color: #82e2ff;
+    font-family: Arial, sans-serif;
+
+}
