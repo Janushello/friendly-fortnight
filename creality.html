@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="styles.css" rel="stylesheet">
+        <title>My Webpage</title>
+        <script>
+            window.addEventListener('load', function() {
+                const navbar = document.querySelector('.navbar');
+                const aside = document.querySelector('aside');
+
+                function showNavbar() {
+                    navbar.classList.add('active');
+                    aside.style.paddingLeft = '220px';
+                }
+
+                function hideNavbar() {
+                    aside.style.paddingLeft = '20px';
+                    navbar.classList.remove('active');
+                }
+
+                aside.addEventListener('mouseover', (event) => {
+                    const x = event.clientX;
+                    if (x <= 150 && x > 0) {
+                        showNavbar();
+                    }
+                });
+                navbar.addEventListener('mouseleave', () => {
+                    hideNavbar();
+                });
+            });
+        </script>
+    </head>
+    <body>
+            <div class="navbar">
+                <div class="nav-header">
+                    Navigate
+                </div>
+                <div class="linklist">
+                    <p><a href="./index.html">Home</a></p>
+                    <p>Links</p>
+                    <p>Creality</p>
+                    <p>Prusa Research</p>
+                    <p>Ultimaker</p>
+                    <p>MakerBot</p>
+                    <p>FlashForge</p>
+                    <p>LulzBot</p>
+                    <p>XYZprinting</p>
+                    <p>Anet</p>
+                    <p>Wanhao</p>
+                    <p>Monoprice</p>
+                    <p>Robo 3D</p>
+                    <p>Sindoh</p>
+                    <p>Tevo</p>
+                </div>
+            </div>
+            <aside>
+                <p><h2>On this page will be informations about Creality printers.</h2></p>
+                <p><h1>Ender-5 S1</h1></p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At reprehenderit alias cum explicabo voluptatem culpa quasi ipsa commodi nihil! Quo quis laborum nemo odit neque. Aliquid quod expedita accusantium dicta.</p>  
+                <p><h1>Ender-3 V2 Neo</h1></p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At reprehenderit alias cum explicabo voluptatem culpa quasi ipsa commodi nihil! Quo quis laborum nemo odit neque. Aliquid quod expedita accusantium dicta.</p>  
+                <p><h1>Ender-3 S1</h1></p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At reprehenderit alias cum explicabo voluptatem culpa quasi ipsa commodi nihil! Quo quis laborum nemo odit neque. Aliquid quod expedita accusantium dicta.</p>  
+                <p><h1>Ender-3 S1 Pro</h1></p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At reprehenderit alias cum explicabo voluptatem culpa quasi ipsa commodi nihil! Quo quis laborum nemo odit neque. Aliquid quod expedita accusantium dicta.</p>  
+            </aside>
+    </body>
+</html>

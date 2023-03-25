@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="styles.css" rel="stylesheet">
-        <title>My Webpage</title>
+        <title>Blog o drukarkach</title>
         <script>
             window.addEventListener('load', function() {
                 const navbar = document.querySelector('.navbar');
@@ -17,13 +17,13 @@
                 }
 
                 function hideNavbar() {
-                    aside.style.paddingLeft = '20px';
+                    aside.style.paddingLeft = '100px';
                     navbar.classList.remove('active');
                 }
 
                 aside.addEventListener('mouseover', (event) => {
                     const x = event.clientX;
-                    if (x <= 150 && x > 0) {
+                    if (x <= 100 && x > 0) {
                         showNavbar();
                     }
                 });
@@ -41,7 +41,7 @@
                 <div class="linklist">
                     <p>Home</p>
                     <p>Links</p>
-                    <p>Creality</p>
+                    <p><a href="./creality.html">Creality</a></p>
                     <p>Prusa Research</p>
                     <p>Ultimaker</p>
                     <p>MakerBot</p>
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <aside>
-                <p><h2>On this page will be some informations about 3D printers.</h2></p>
+                <p><h2>Drukarki 3D.</h2></p>
                 <p>
                     Drukarki 3D to urządzenia, które pozwalają na tworzenie
                     trójwymiarowych obiektów poprzez nakładanie warstw materiału,
@@ -68,6 +68,126 @@
                     (Selective Laser Sintering), aby stworzyć obiekty z różnych
                     materiałów.
                 </p>
+                <p>
+                    Informacje (modele i informacje o nich) zostały wzięte z 
+                    oficjalnych sklepów producentów.
+                </p>
+                <form method="post">
+                    nazwa drukarki:<br> 
+                    <input type="text" id="nazwa" name="nazwa"><br>    
+                    cena drukarki:  <br> 
+                    <input type="text" id="cena" name="cena"><br>
+                    średnica dyszy(w mm):<br> 
+                    <input type="text" id="sdyszy" name="sdyszy"><br>
+                    prędkość druku:<br> 
+                    <input type="text" id="pdruku" name="pdruku"><br>
+                    rozmiar druku(w mm):<br>
+                    <input type="text" id="rdruku" name="rdruku"><br>
+                    wymiary drukarki(w mm):<br>
+                    <input type="text" id="wdrukarki" name="wdrukarki"><br>
+                    średnica filamentu:<br>
+                    <input type="text" id="sfilamentu" name="sfilamentu"><br>
+                    <!-- zrobić coś w rodzaju ułożenia w stylu grid -->
+                    Rodzaj filamentu:<br>
+                    <div class="checkbox-container">
+                        <div class="checkbox-column">
+                            <input type="checkbox" id="pla" name="filament" value="pla">
+                            <label for="pla">PLA</label>
+                            <input type="checkbox" id = "abs" name="filament" value="abs">
+                            <label for="abs">ABS</label>
+                            <input type="checkbox" id = "petg" name="filament" value="petg">
+                            <label for="abs">ABS</label>
+                        </div><br>
+                        <div class="checkbox-column">
+                            <input type="checkbox" id="nylon" name="filament" value="nylon">
+                            <label for="nylon">Nylon</label>
+                            <input type="checkbox" id="tpu" name="filament" value="tpu">
+                            <label for="tpu">TPU</label>
+                            <input type="checkbox" id="wood" name="filament" value="wood">
+                            <label for="wood">Drewniany PLA</label>
+                            <input type="checkbox" id = "pva" name="filament" value="pva">
+                            <label for="pva">PVA</label>
+                            <input type="checkbox" id="hips" name="filament" value="hips">
+                            <label for="hips">HIPS</label>
+                        </div><br>
+                        <div class="checkbox-column">
+                            <input type="checkbox" id="pc" name="filament" value="pc">
+                            <label for="pc">PC</label>
+                            <input type="checkbox" id="asa" name="filament" value="asa">
+                            <label for="asa">ASA</label>
+                            <input type="checkbox" id = "pp" name="filament" value="pp">
+                            <label for="pp">PP</label>
+                        </div><br>
+                        <div class="checkbox-column">
+                            <input type="checkbox" id="pmma" name="filament" value="pmma">
+                            <label for="pmma">PMMA</label>
+                            <input type="checkbox" id="pa" name="filament" value="pa">
+                            <label for="pa">PA</label>
+                            <input type="checkbox" id="tpe" name="filament" value="tpe">
+                            <label for="tpe">TPE</label>
+                        </div>
+                        <div class="checkbox-column">
+                            <input type="checkbox" id = "pcabs" name="filament" value="pcabs">
+                            <label for="pcabs">PC-ABS</label>
+                            <input type="checkbox" id="ppgf" name="filament" value="ppgf">
+                            <label for="ppgf">PP-GF</label>
+                            <input type="checkbox" id="metal" name="filament" value="metal">
+                            <label for="metal">Metal PLA</label>
+                        </div><br>
+                        <div class="checkbox-column">
+                            <input type="checkbox" id = "pcabs" name="filament" value="pcabs">
+                            <label for="pcabs">PC-ABS</label>
+                            <input type="checkbox" id="ppgf" name="filament" value="ppgf">
+                            <label for="ppgf">PP-GF</label>
+                            <input type="checkbox" id="metal" name="filament" value="metal">
+                            <label for="metal">Metal PLA</label>
+                        </div>
+                        <div class="checkbox-column">
+                            <input type="checkbox" id = "pcabs" name="filament" value="pcabs">
+                            <label for="pcabs">PC-ABS</label>
+                            <input type="checkbox" id="ppgf" name="filament" value="ppgf">
+                            <label for="ppgf">PP-GF</label>
+                            <input type="checkbox" id="metal" name="filament" value="metal">
+                            <label for="metal">Metal PLA</label>
+                        </div><br>
+                        <div class="checkbox-column">
+                            <input type="checkbox" id="gitdpla" name="filament" value="gitdpla">
+                            <label for="gitdpla">Glow-in-the-dark PLA</label>
+                            <input type="checkbox" id="fpla" name="filament" value="fpla">
+                            <label for="fpla">Flex PLA</label>
+                            <input type="checkbox" id="cfpla" name="filament" value="cfpla">
+                            <label for="cfpla">Carbon Fiber PLA</label>
+                        </div>
+                        <div class="checkbox-column">
+                            <input type="checkbox" id="cpla" name="filament" value="cpla">
+                            <label for="cpla">Conductive PLA</label>
+                        </div> 
+                    </div>
+                    wyświetlacz:
+                    <input type="radio" id="dotykowy" name="wyswietlacz" value="dotykowy">
+                    <label for="dotykowy">dotykowy</label>
+                    <input type="radio" id="galka" name="wyswietlacz" value="galka">
+                    <label for="galka">gałka</label><br>
+                    sposób poziomowania:
+                    <input type="radio" id="auto" name="poziom" value="1">
+                    <label for="auto">auto</label>
+                    <input type="radio" id="reczne" name="poziom" value="0">
+                    <label for="reczne">ręczne</label><br>
+                    wznawianie wydruku:
+                    <input type="radio" id="wwydruktak" name="wwydruk" value="1">
+                    <label for="wwydruktak">tak</label>
+                    <input type="radio" id="wwydruknie" name="wwydruk" value="0">
+                    <label for="wwydruknie">nie</label><br>
+                    czujnik filamentu:
+                    <input type="radio" id="czfilamentutak" name="czfilamentu" value="1">
+                    <label for="czfilamentutak">tak</label>
+                    <input type="radio" id="czfilamentunie" name="czfilamentu" value="0">
+                    <label for="czfilamentunie">nie</label><br>
+                    <button type="submit" value="Wyślij">
+                        Wyślij
+                    </button>
+
+                </form>
             </aside>
     </body>
 </html>
