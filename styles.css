@@ -48,9 +48,9 @@ aside {
     height: 100%;
 }
 .checkbox-container {
-    width: 400px;
-}
-  
-.checkbox-column {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
     float: left;
+    
 }
