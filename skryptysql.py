@@ -1,20 +1,58 @@
 import pyodbc
-from flask import Flask, send_file, request
+from flask import Flask, send_file, request, jsonify
 from flask_restful import Api
 
 app = Flask(__name__)
 api = Api(app)
-@app.route('/', methods=['GET','POST','DELETE'])
-def index():
+@app.route('/data.json',methods=['GET'])
+def get():
     
-    if request.method == 'POST':
-        cnxn = pyodbc.connect(
+    condb = pyodbc.connect(
             Trusted_Connection='Yes',
             Driver='{ODBC Driver 17 for SQL Server}',
             Server='localhost',
             Database='webdatabase'
         )
-        cursor = cnxn.cursor()
+    cursor = condb.cursor()
+    if request.method=='GET':
+        with open('select.sql', 'r') as f4:
+            command = f4.readline()
+            cursor.execute(command)
+            command = f4.readline()
+            cursor.execute(command)
+            wynik = cursor.fetchall()
+            print(wynik)
+            json_data = []
+            for row in wynik:
+                for i in range(11):
+                    print(row[i])
+                json_data.append({
+                    'id': row[0],
+                    'nazwa': row[1],
+                    'cena': float(row[2]),
+                    'srednica_dyszy': float(row[3]),
+                    'predkosc_druku': row[4],
+                    'srednica_filamentu': float(row[5]),
+                    'wyswietlacz': row[6],
+                    'rozmiar_druku': row[7],
+                    'automatyczne_poziomowanie': row[8],
+                    'wznowienie_wydruku': row[9],
+                    'czujnik_filamentu': row[10],
+                    'wymiary_drukarki': row[11]
+                })
+        cursor.close()
+        condb.close()
+        return jsonify(data= json_data)
+@app.route('/', methods=['POST','GET'])
+def index():
+    condb = pyodbc.connect(
+            Trusted_Connection='Yes',
+            Driver='{ODBC Driver 17 for SQL Server}',
+            Server='localhost',
+            Database='webdatabase'
+        )
+    cursor = condb.cursor()
+    if request.method == 'POST':
         printer_values = (
             request.form.get('nazwa'), 
             float(request.form.get('cena').replace(',','.')),
@@ -34,8 +72,8 @@ def index():
             cursor.execute(command, printer_values)
             cursor.execute("select ident_current('drukarki')")
             idprinter = cursor.fetchone()[0]
-        cnxn.commit()
-          
+        condb.commit()
+        
         filaments = request.form.getlist('filament')
         for filament in filaments:
             cursor.execute(f"select id from filamenty where rodzaj_filamentu='{filament}'")
@@ -44,7 +82,7 @@ def index():
             with open('insert_filamenty.sql', 'r') as f2:
                 command=f2.read()
                 cursor.execute(command,filament_value)
-        cnxn.commit()
+        condb.commit()
 
         komunikacje = request.form.getlist('komunikacja')
         for komunikacja in komunikacje:
@@ -54,15 +92,19 @@ def index():
             with open('insert_komunikacje.sql', 'r') as f2:
                 command=f2.read()
                 cursor.execute(command,komunikacje_value)
-        cnxn.commit()
+        condb.commit()
         for tables in nazwy_tabel:
             cursor.execute(f"SELECT * FROM {tables}")
             wynik = cursor.fetchall()
             print(tables)
             print(wynik)
-        cursor.close()
-        cnxn.close()
+
+    cursor.close()
+    condb.close()
     return send_file('index.html')
+@app.route('/scriptjs.js')
+def skrypt():
+    return send_file('scriptjs.js')
 @app.route('/styles.css')
 def style():
     return send_file('styles.css')
@@ -72,13 +114,13 @@ def creality():
 
 nazwy_tabel = ["drukarki_komunikacje","drukarki_filamenty","drukarki", "filamenty", "komunikacje"]
 
-cnxn = pyodbc.connect(
+condb = pyodbc.connect(
     Trusted_Connection='Yes',
     Driver='{ODBC Driver 17 for SQL Server}',
     Server='localhost',
     Database='webdatabase'
 )
-cursor = cnxn.cursor()
+cursor = condb.cursor()
 
 column_names=[]
 query = cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'drukarki'")
@@ -87,31 +129,9 @@ for i in kolumny:
     column_names.append(i[0])
 
 
-
-'''wybor = input("1 - insert \n2 - select")
-if wybor == 2:
-with open('select.sql', 'r') as f4:
-    command = f4.readline()
-    cursor.execute(command)
-    wynik = cursor.fetchone()
-    print(wynik)
-    command = f4.readline()
-    cursor.execute(command)
-    wynik = cursor.fetchall()
-    print("|",end="")
-    for i in column_names:
-        print(f"{i}|",end="",)
-    print("")
-    for row in wynik:
-        print("|",end="")
-        for i in row:
-            print(f"{i}|",end="")
-        print("")
-        '''
-
 # close the cursor and connection
 cursor.close()
-cnxn.close()
+condb.close()
 
 if __name__ == "__main__":
     app.run(debug=True)

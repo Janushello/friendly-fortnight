@@ -6,32 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="styles.css" rel="stylesheet">
         <title>Blog o drukarkach</title>
-        <script>
-            window.addEventListener('load', function() {
-                const navbar = document.querySelector('.navbar');
-                const aside = document.querySelector('aside');
-
-                function showNavbar() {
-                    navbar.classList.add('active');
-                    aside.style.paddingLeft = '220px';
-                }
-
-                function hideNavbar() {
-                    aside.style.paddingLeft = '100px';
-                    navbar.classList.remove('active');
-                }
-
-                aside.addEventListener('mouseover', (event) => {
-                    const x = event.clientX;
-                    if (x <= 100 && x > 0) {
-                        showNavbar();
-                    }
-                });
-                navbar.addEventListener('mouseleave', () => {
-                    hideNavbar();
-                });
-            });
-        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="scriptjs.js"></script>
     </head>
     <body>
             <div class="navbar">
@@ -73,19 +49,19 @@
                     oficjalnych sklepów producentów.
                 </p>
                 <form method="post">
-                    nazwa drukarki:<br> 
+                    <label for="nazwa">nazwa drukarki:</label><br> 
                     <input type="text" id="nazwa" name="nazwa"><br>    
-                    cena drukarki:  <br> 
+                    <label for="cena">cena drukarki:</label>  <br> 
                     <input type="text" id="cena" name="cena"><br>
-                    średnica dyszy(w mm):<br> 
+                    <label for="sdyszy">średnica dyszy(w mm):</label><br> 
                     <input type="text" id="sdyszy" name="sdyszy"><br>
-                    prędkość druku:<br> 
+                    <label for="pdruku">prędkość druku:</label><br> 
                     <input type="text" id="pdruku" name="pdruku"><br>
-                    rozmiar druku(w mm):<br>
+                    <label for="rdruku">rozmiar druku(w mm):</label><br>
                     <input type="text" id="rdruku" name="rdruku"><br>
-                    wymiary drukarki(w mm):<br>
+                    <label for="wdrukarki">wymiary drukarki(w mm):</label><br>
                     <input type="text" id="wdrukarki" name="wdrukarki"><br>
-                    średnica filamentu:<br>
+                    <label for="sfilamentu">średnica filamentu:</label><br>
                     <input type="text" id="sfilamentu" name="sfilamentu"><br>
                     Rodzaj filamentu:<br>
                     <div class="checkbox-container">
@@ -177,7 +153,9 @@
                     <label for="czfilamentunie">nie</label><br>
                     <button type="submit" value="Wyślij">
                         Wyślij
-                    </button>
+                    </button><br>
+                    <button type="button" id="myButton">Wyświetl tabelę drukarki</button>
+
                 </form>
             </aside>
     </body>
